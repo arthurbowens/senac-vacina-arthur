@@ -10,10 +10,19 @@ export class PaisService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private readonly API: string = "localhost:8080/senac-20241-backend-exemplos/rest/pais";
+  private readonly API: string = "http://localhost:8080/ex01/rest/pais";
 
   public consultarTodos(): Observable<Array<Pais>>{
     return this.httpClient.get<Array<Pais>>(this.API + '/todos');
   }
+
+  public salvar(pais: Pais):  Observable<Array<Pais>>{
+    return this.httpClient.post<Array<Pais>>(this.API, pais);
+}
+
+ public consultarPorId(idPais: number): Observable<Array<Pais>>{
+  return this.httpClient.post<Array<Pais>>(this.API + '/', idPais);
+}
+
 
 }

@@ -1,11 +1,15 @@
-import { Pais } from "./pais";
-import { Pessoa } from "./pessoa";
+import { Pais } from './pais';
+import { Pessoa } from './pessoa';
 
-export interface Vacina{
-    id: number;
-	nome: string;
-	paisOrigem: Pais;
-	pesquisadorResponsavel: Pessoa;
-	dataInicioPesquisa: Date;
-	estagio: number;
+
+export class Vacinas {
+
+  id: number;
+  nome: string;
+  paisOrigem: Pais;
+  pesquisadorResponsavel: Pessoa;
+  estagio: number;
+  dataInicioPesquisa: Date;
+  //mediaVacina: number
+
 }

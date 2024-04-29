@@ -1,6 +1,7 @@
 import { Pais } from "./pais";
 
 export interface Pessoa{
+
     id: number;
 	nome: string;
 	sigla: string;
