@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { VacinasService } from '../../shared/service/vacinas.service';
+import { VacinaService } from '../../shared/service/vacinas.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Vacinas } from '../../shared/model/vacina';
 import { Pessoa } from '../../shared/model/pessoa';
 import { Pais } from '../../shared/model/pais';
 import { PesquisadorService } from '../../shared/service/pesquisador.service';
 import { PaisService } from '../../shared/service/pais.service';
 import Swal from 'sweetalert2';
+import { Vacina } from '../../shared/model/vacina';
 
 @Component({
   selector: 'app-vacina-detalhe',
@@ -19,11 +19,11 @@ export class VacinaDetalheComponent implements OnInit {
 
   public pais: Array<Pais> = new Array();
   public pesquisadores: Array<Pessoa> = new Array();
-  public vacina: Vacinas = new Vacinas();
+  public vacina: Vacina = new Vacina();
   public idVacina: number;
 
   constructor(
-    private vacinaService: VacinasService,
+    private vacinaService: VacinaService,
     private router: Router, // COMPONENTE PARA FAZER ROTEAMENTO ENTRA AS TELAS
     private pesquisadorService: PesquisadorService,
     private paisService: PaisService,

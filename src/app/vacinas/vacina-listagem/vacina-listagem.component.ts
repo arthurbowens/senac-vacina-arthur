@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Vacinas } from '../../shared/model/vacina';
-import { VacinasService } from '../../shared/service/vacinas.service';
+import { Vacina } from '../../shared/model/vacina';
 import { VacinaSeletor } from '../../shared/model/seletor/vacina.seletor';
 import { PaisService } from '../../shared/service/pais.service';
 import { Pais } from '../../shared/model/pais';
@@ -8,6 +7,7 @@ import { Pessoa } from '../../shared/model/pessoa';
 import { PesquisadorService } from '../../shared/service/pesquisador.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { VacinaService } from '../../shared/service/vacinas.service';
 
 @Component({
   selector: 'app-vacina-listagem',
@@ -15,13 +15,15 @@ import { Router } from '@angular/router';
   styleUrl: './vacina-listagem.component.scss',
 })
 export class VacinaListagemComponent implements OnInit {
-  public vacinas: Array<Vacinas> = new Array();
+
+  public vacinas: Array<Vacina> = new Array();
   public seletor: VacinaSeletor = new VacinaSeletor();
   public paises: Array<Pais> = new Array();
   public pesquisadores: Array<Pessoa> = new Array();
 
+
   constructor(
-    private VacinaService: VacinasService,
+    private vacinasService: VacinaService,
     private paisService: PaisService,
     private pesquisadorService: PesquisadorService,
     private router: Router
@@ -50,7 +52,7 @@ export class VacinaListagemComponent implements OnInit {
   }
 
   private consultarTodasVacinas() {
-    this.VacinaService.listarTodas().subscribe(
+    this.vacinasService.listarTodas().subscribe(
       (resultado) => {
         this.vacinas = resultado;
       },
@@ -61,7 +63,7 @@ export class VacinaListagemComponent implements OnInit {
   }
 
   public pesquisar() {
-    this.VacinaService.consultarComSeletor(this.seletor).subscribe(
+    this.vacinasService.consultarComSeletor(this.seletor).subscribe(
       (resultado) => {
         this.vacinas = resultado;
       },
@@ -79,7 +81,9 @@ export class VacinaListagemComponent implements OnInit {
     this.router.navigate(['/vacina/detalhe/', idVacinaSelecionada]);
   }
 
-  public excluir(vacinaSelecionada: Vacinas) {
+
+  public excluir(vacinaSelecionada: Vacina) {
+
     Swal.fire({
       title: 'Deseja excluir vacina?',
       text: 'Essa ação não poderá ser desfeita',
@@ -89,11 +93,14 @@ export class VacinaListagemComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-        this.VacinaService.excluir(vacinaSelecionada.id).subscribe(
+        this.vacinasService.excluir(vacinaSelecionada.idVacina).subscribe(
           (resultado) => {
+            debugger
             this.pesquisar();
+            Swal.fire('Sucesso!', 'Vacina excluida com sucesso!', 'success');
           },
           (erro) => {
+
             Swal.fire('Erro!', 'Erro ao excluir vacina: ' + erro.error.mensagem, 'error');
           }
 

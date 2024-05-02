@@ -2,14 +2,13 @@ import { Pais } from './pais';
 import { Pessoa } from './pessoa';
 
 
-export class Vacinas {
+export class Vacina {
 
-  id: number;
+  idVacina: number;
   nome: string;
   paisOrigem: Pais;
   pesquisadorResponsavel: Pessoa;
   estagio: number;
   dataInicioPesquisa: Date;
-  //mediaVacina: number
-
+  media: number;
 }
