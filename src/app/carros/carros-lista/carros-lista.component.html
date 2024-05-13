@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header bg-primary">
+      <h5>Filtros</h5>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-4">
+            <label for="nomeMarca">Nome da Marca:</label>
+            <input
+              type="text"
+              id="nomeMarca"
+              class="form-control"
+              name="nomeMarca"
+              [(ngModel)]="seletor.nomeMarca"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="modelo">Modelo:</label>
+            <input
+              type="text"
+              id="modelo"
+              class="form-control"
+              name="modelo"
+              [(ngModel)]="seletor.modelo"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="anoInicial">Ano Inicial:</label>
+            <input
+              type="number"
+              id="anoInicial"
+              class="form-control"
+              name="anoInicial"
+              [(ngModel)]="seletor.anoInicial"
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="anoFinal">Ano Final:</label>
+            <input
+              type="number"
+              id="anoFinal"
+              class="form-control"
+              name="anoFinal"
+              [(ngModel)]="seletor.anoFinal"
+            />
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success" (click)="pesquisar()">
+              Pesquisar
+            </button>
+            <button type="button" class="btn btn-warning" (click)="limpar()">
+              Limpar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <table class="table table-striped border">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Placa</th>
+          <th>Montadora</th>
+          <th>Ano</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let carro of carros">
+          <td>{{ carro.modelo }}</td>
+          <td>{{ carro.placa }}</td>
+          <td>{{ carro.montadora.nome }}</td>
+          <td>{{ carro.ano }}</td>
+          <td>R$ {{ carro.valor }}</td>
+        </tr>
+        <tr *ngIf="carros.length === 0">
+          <td colspan="5" class="text-center">Nenhum veículo encontrado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

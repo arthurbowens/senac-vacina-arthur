@@ -27,7 +27,9 @@
               [(ngModel)]="seletor.nomePais"
             >
               @for (pais of paises; track pais.id) {
-              <option ngValue="{{ pais.nome }}">{{ pais.nome }} ({{ pais.sigla }})</option>
+              <option ngValue="{{ pais.nome }}">
+                {{ pais.nome }} ({{ pais.sigla }})
+              </option>
               }
             </select>
           </div>
@@ -44,17 +46,27 @@
               }
             </select>
           </div>
-          <div class="col-md-2" >
+          <div class="col-md-2">
             <label for="date">Inicio da vacina. Em:</label>
-            <input type="date" id="inicio" class="form-control" name="dataPesquisa"  [(ngModel)]="seletor.dataInicioPesquisa">
-
+            <input
+              type="date"
+              id="inicio"
+              class="form-control"
+              name="dataPesquisa"
+              [(ngModel)]="seletor.dataInicioPesquisa"
+            />
           </div>
           <div class="col-md-2">
             <label for="date">Até: </label>
-            <input type="date" id="nome" class="form-control" name="dataPesquisa"  [(ngModel)]="seletor.dataFinalPesquisa">
-
+            <input
+              type="date"
+              id="nome"
+              class="form-control"
+              name="dataPesquisa"
+              [(ngModel)]="seletor.dataFinalPesquisa"
+            />
           </div>
-          <div class="row" >
+          <div class="row">
             <div class="col-md-16 form-group">
               <label for="btnPesquisar" class="form-label">&nbsp;</label>
               <button
@@ -94,16 +106,36 @@
           <td>{{ vacina.paisOrigem.nome }}</td>
           <td>{{ vacina.pesquisadorResponsavel.nome }}</td>
           <td>{{ vacina.estagio }}</td>
-          <td>{{ vacina.dataInicioPesquisa| date : "dd/MM/yyyy" }}</td>
+          <td>{{ vacina.dataInicioPesquisa | date : "dd/MM/yyyy" }}</td>
           <!-- <td> {{ vacina.mediaVacina }} </td> -->
           <td>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="btn btn-primary" (click)="atualizar(vacina.idVacina)">Editar</button>
-              <button class="btn btn-danger " (click)="excluir(vacina)">Excluir</button>
+              <button
+                class="btn btn-primary"
+                (click)="atualizar(vacina.idVacina)"
+              >
+                Editar
+              </button>
+              <button class="btn btn-danger" (click)="excluir(vacina)">
+                Excluir
+              </button>
             </div>
           </td>
         </tr>
       </tbody>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" (click)="anterior()">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" (click)="posterior()">Next</a>
+          </li>
+        </ul>
+      </nav>
     </table>
   </div>
 </div>

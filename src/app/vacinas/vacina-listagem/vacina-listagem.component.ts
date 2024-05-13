@@ -82,6 +82,7 @@ export class VacinaListagemComponent implements OnInit {
   }
 
 
+
   public excluir(vacinaSelecionada: Vacina) {
 
     Swal.fire({
@@ -95,7 +96,6 @@ export class VacinaListagemComponent implements OnInit {
       if (result.value) {
         this.vacinasService.excluir(vacinaSelecionada.idVacina).subscribe(
           (resultado) => {
-            debugger
             this.pesquisar();
             Swal.fire('Sucesso!', 'Vacina excluida com sucesso!', 'success');
           },
@@ -108,4 +108,18 @@ export class VacinaListagemComponent implements OnInit {
       }
     });
   }
+
+  public editar(idVacinaSelecionada: number) {
+    this.router.navigate(['/vacinas/detalhes/', idVacinaSelecionada]);
+  }
+
+  posterior() {
+
+    }
+  anterior() {
+
+    }
+
+
+
 }

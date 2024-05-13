@@ -8,6 +8,6 @@ export interface Pessoa{
 	cpf: string;
 	sexo: string;
 	dataNascimento: Date;
-	tipo: number;
+	tipoDePessoa: number;
 	paisOrigem: Pais;
 }
